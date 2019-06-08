@@ -1,1 +1,11 @@
-
+###配置网关反向代理
+zuul:
+  routes:
+    api-a:
+    #当客户端发送请求127.0.0.1:80/api-goods开头的都会转发到goods-offer服务下
+      path: /api-goods/**
+      #服务别名 zuul网关默认整合了ribbon，自动实现负载均衡效果
+      service-id: goods-offer
+    api-b:
+      path: /api-member/**
+      service-id: member-offer
